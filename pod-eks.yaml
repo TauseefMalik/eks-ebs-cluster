@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mynginx-pod4
+  labels:
+    app: mynginx
+spec:
+  volumes:
+    - name: persistent-storage4
+      persistentVolumeClaim:
+        claimName: pvc-web-store4
+  containers:
+    - name: mynginx-task
+      image: nginx
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: persistent-storage4
+          mountPath: /usr/share/nginx/html
+
